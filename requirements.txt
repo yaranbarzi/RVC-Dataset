@@ -1,0 +1,12 @@
+audio-separator[gpu]==0.17.5
+demucs
+aria2p
+yt-dlp
+ort-nightly-gpu
+noisereduce
+librosa
+soundfile
+gradio
+numpy
+scipy
+pydub
