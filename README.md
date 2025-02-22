@@ -1,4 +1,11 @@
-# Voice Processor
+# RVC Dataset Maker
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yaranbarzi/RVC-Dataset/blob/main/RVC_Dataset_UI.ipynb) RVC Dataset UI
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yaranbarzi/RVC-Dataset/blob/main/Create_Dataset_NO_UI.ipynb) Create Dataset (No UI)
+
+Follow us on YouTube: [![YouTube Channel](https://img.shields.io/badge/YouTube-aigolden-red?style=flat&logo=youtube)](https://youtube.com/@aigolden)
+
 
 پردازشگر حرفه‌ای صدا با قابلیت‌های:
 - جداسازی صدا از موسیقی
@@ -13,6 +20,4 @@
 4. رابط کاربری ساده با Gradio
 
 ## نحوه استفاده
-1. نصب کتابخانه‌های مورد نیاز: `pip install -r requirements.txt`
-2. اجرای برنامه: `python app.py`
-3. مشاهده رابط کاربری در مرورگر
+با استفاده از یکی از نوتبوک های بالا در گوگل کولب اجرا شود . نسخه های بالا هم بصورت UI و هم بصورت NO UI هست
