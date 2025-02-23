@@ -22,7 +22,7 @@ def clean_temp_directory():
     os.makedirs('temp')
 
 def download_youtube_audio(url):
-    """Download audio from YouTube URL"""
+    """Download audio from YouTube URL with additional options to bypass restrictions"""
     ydl_opts = {
         'format': 'bestaudio/best',
         'postprocessors': [{
@@ -31,14 +31,35 @@ def download_youtube_audio(url):
             'preferredquality': '192',
         }],
         'outtmpl': os.path.join('temp', '%(title)s.%(ext)s'),
-        'restrictfilenames': True
+        'restrictfilenames': True,
+        # Add these options to help bypass restrictions
+        'nocheckcertificate': True,
+        'no_warnings': True,
+        'extractaudio': True,
+        'geo_bypass': True,
+        'geo_bypass_country': 'US',
+        # Add custom headers to mimic a web browser
+        'http_headers': {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-us,en;q=0.5',
+        }
     }
     
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])
-    
-    # Return the path of downloaded file
-    return [os.path.join('temp', f) for f in os.listdir('temp') if f.endswith('.wav')]
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([url])
+        
+        # Return the path of downloaded file
+        return [os.path.join('temp', f) for f in os.listdir('temp') if f.endswith('.wav')]
+    except Exception as e:
+        # Add more detailed error handling
+        if 'HTTP Error 403' in str(e):
+            raise Exception("خطای دسترسی به یوتیوب. لطفا از VPN استفاده کنید یا لینک را بررسی کنید.")
+        elif 'Video unavailable' in str(e):
+            raise Exception("ویدیو در دسترس نیست. لطفا لینک را بررسی کنید.")
+        else:
+            raise Exception(f"خطا در دانلود: {str(e)}")
 
 def handle_uploaded_files(files):
     """Handle uploaded files by copying them to temp directory"""
